@@ -1,0 +1,15 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/flyflow', '.']
+
+  # Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/flyflow']
+
+# Images to be stored in Container Registry
+images:
+  - 'gcr.io/$PROJECT_ID/flyflow'
+
+# Set the timeout for the build
+timeout: '1200s'  # 20 minutes
